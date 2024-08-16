@@ -17,39 +17,23 @@ class MyApp extends StatelessWidget {
           backgroundColor: Color.fromARGB(255, 238, 224, 103),
         ),
         body: Center(
-          child: Row(
+          child: Stack(
             children: [
+              SizedBox(height: 20,),
               Container(
                 width: 200,
                 height: 200,
-                // color: Colors.amber.shade600, // we have to use single style property
-                decoration: BoxDecoration (
-                  color:Colors.red,
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Center(
-                  child: Text(
-                    "world",
-                    style: TextStyle(color: Colors.black),
-                  ),
-                ),
+                color: Colors.green,
               ),
-              SizedBox(width: 20,),
-              Container(
-                child: Center(
-                  child: Text(
-                    "Hello",
-                    style: TextStyle(color: Colors.black),
-                  ),
-                ) ,
-                width: 200,
-                height: 200,
-                color: Colors.greenAccent.shade400,
-              )
-
+              Positioned(
+                bottom: 50,
+                right: 50,
+                child: Icon(Icons.face)
+                )   ,
             ],
           ),
         ),
+
       ),
     );
   }
