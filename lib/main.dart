@@ -13,27 +13,21 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
-          title: Text("Flutter app"),
+          title: Text("Card Widget"),
           backgroundColor: Color.fromARGB(255, 238, 224, 103),
         ),
         body: Center(
-          child: Stack(
-            children: [
-              SizedBox(height: 20,),
-              Container(
-                width: 200,
-                height: 200,
-                color: Colors.green,
-              ),
-              Positioned(
-                bottom: 50,
-                right: 50,
-                child: Icon(Icons.face)
-                )   ,
-            ],
+          child: Card(
+            color: Colors.blue,
+            elevation: 5.0,
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+            child: Padding(
+              padding: EdgeInsets.all(20.0),
+              child: Text('card widget'),
+            ),
           ),
         ),
-
       ),
     );
   }
