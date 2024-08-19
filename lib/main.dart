@@ -14,12 +14,12 @@ class MyApp extends StatelessWidget {
         backgroundColor: Colors.teal,
         body: SafeArea(
           child: Row(
-            // mainAxisSize: MainAxisSize.min, // cover only minimum size 
+            // mainAxisSize: MainAxisSize.min, // cover only minimum size
             // verticalDirection: VerticalDirection.up,
             // mainAxisAlignment: MainAxisAlignment.center,
             // mainAxisAlignment: MainAxisAlignment.end,
             // mainAxisAlignment: MainAxisAlignment.spaceAround,
-            // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             // crossAxisAlignment: CrossAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -27,35 +27,42 @@ class MyApp extends StatelessWidget {
               Container(
                 padding: EdgeInsets.all(20),
                 color: Colors.red,
-                width: 30,
+                width: 100,
                 // height: 100,
-                child: Text("container 1",style: TextStyle(color: Colors.black),),
-                
-              
+                child: Text(
+                  "container 1",
+                  style: TextStyle(color: Colors.black),
+                ),
               ),
-              SizedBox(
-                height: 30,
-                width: 30,
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    width: 100,
+                    height: 100,
+                    color: Colors.yellow,
+                  ),
+                  Container(
+                    width: 100,
+                    height: 100,
+                    color: Colors.green[500],
+                  ),
+                ],
               ),
-               Container(
+
+              Container(
                 padding: EdgeInsets.all(20),
                 color: Colors.blue,
                 // width: double.infinity,
                 // height: 100,
-                child: Text("container 2",style: TextStyle(color: Colors.black),),
-              
+                child: Text(
+                  "container 2",
+                  style: TextStyle(color: Colors.black),
+                ),
               ),
-               Container(
-                padding: EdgeInsets.all(20),
-                color: Colors.green,
-                // width: 150,
-                // height: 100,
-                child: Text("container 3",style: TextStyle(color: Colors.black),),
-              
-              ),
-            //   Container(
-            //     width: double.infinity,
-            //   ),
+              //   Container(
+              //     width: double.infinity,
+              //   ),
             ],
           ),
         ),
