@@ -13,19 +13,50 @@ class MyApp extends StatelessWidget {
       home: Scaffold(
         backgroundColor: Colors.teal,
         body: SafeArea(
-          child: Container(
-            // margin: EdgeInsets.all(50),
-            // margin: EdgeInsets.symmetric(vertical: 50, horizontal: 20),
-            // margin: EdgeInsets.only(top: 20),
-            // margin: EdgeInsets.zero,
-            margin: EdgeInsets.fromLTRB(10, 20, 30, 40),
-
-            padding: EdgeInsets.all(20),
-            color: Colors.white,
-            width: 100,
-            height: 100,
-            child: Text("Hello",style: TextStyle(color: Colors.black),),
-          
+          child: Row(
+            // mainAxisSize: MainAxisSize.min, // cover only minimum size 
+            // verticalDirection: VerticalDirection.up,
+            // mainAxisAlignment: MainAxisAlignment.center,
+            // mainAxisAlignment: MainAxisAlignment.end,
+            // mainAxisAlignment: MainAxisAlignment.spaceAround,
+            // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            // crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Container(
+                padding: EdgeInsets.all(20),
+                color: Colors.red,
+                width: 30,
+                // height: 100,
+                child: Text("container 1",style: TextStyle(color: Colors.black),),
+                
+              
+              ),
+              SizedBox(
+                height: 30,
+                width: 30,
+              ),
+               Container(
+                padding: EdgeInsets.all(20),
+                color: Colors.blue,
+                // width: double.infinity,
+                // height: 100,
+                child: Text("container 2",style: TextStyle(color: Colors.black),),
+              
+              ),
+               Container(
+                padding: EdgeInsets.all(20),
+                color: Colors.green,
+                // width: 150,
+                // height: 100,
+                child: Text("container 3",style: TextStyle(color: Colors.black),),
+              
+              ),
+            //   Container(
+            //     width: double.infinity,
+            //   ),
+            ],
           ),
         ),
       ),
