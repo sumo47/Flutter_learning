@@ -31,3 +31,6 @@ flutter:
     - family: Source Code Pro
       fonts:
         - asset: fonts/SourceCodePro-VariableFont_wght.ttf
+    - family: Source Sans 3
+      fonts:
+        - asset: fonts/SourceSans3-VariableFont_wght.ttf
