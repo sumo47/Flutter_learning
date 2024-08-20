@@ -13,61 +13,45 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        backgroundColor: Colors.red,
+        backgroundColor: Colors.blue,
         appBar: AppBar(
           title: Text(
-            "Dicee",
+            "Ask Me Anything",
             style: TextStyle(color: Colors.white),
           ),
-          backgroundColor: const Color.fromARGB(255, 56, 23, 20),
+          backgroundColor: Colors.blue.shade900,
         ),
-        body: DicePage(),
+        body: MagicBall(),
       ),
     );
   }
 }
 
-class DicePage extends StatefulWidget {
-  const DicePage({super.key});
+class MagicBall extends StatefulWidget {
+  const MagicBall({super.key});
 
   @override
-  State<DicePage> createState() => _DicePageState();
+  State<MagicBall> createState() => _MagicBallState();
 }
 
-class _DicePageState extends State<DicePage> {
-  int leftDiceNumber = 5;
-  int rightDiceNumber = 5;
-
-  void toggleButton() {
+class _MagicBallState extends State<MagicBall> {
+  int ball = 1;
+  void magicBallClick() {
     setState(() {
-      //setstate update all the state where it used
-      leftDiceNumber = Random().nextInt(6) + 1;
-      rightDiceNumber = Random().nextInt(6) + 1;
+      ball = Random().nextInt(4) + 1;
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Row(
-        children: [
-          Expanded(
-            child: TextButton(
-              onPressed: () {
-                toggleButton();
-              },
-              child: Image.asset("images/dice$leftDiceNumber.png"),
-            ),
-          ),
-          Expanded(
-            child: TextButton(
-              onPressed: () {
-                toggleButton();
-              },
-              child: Image.asset("images/dice$rightDiceNumber.png"),
-            ),
-          ),
-        ],
+      child: Container(
+        child: TextButton(
+          onPressed: () {
+            magicBallClick();
+          },
+          child: Image.asset("images/ball$ball.png"),
+        ),
       ),
     );
   }
