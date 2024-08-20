@@ -15,8 +15,11 @@ class MyApp extends StatelessWidget {
       home: Scaffold(
         backgroundColor: Colors.red,
         appBar: AppBar(
-          title: Text("Dicee"),
-          backgroundColor: Colors.red,
+          title: Text(
+            "Dicee",
+            style: TextStyle(color: Colors.white),
+          ),
+          backgroundColor: const Color.fromARGB(255, 56, 23, 20),
         ),
         body: DicePage(),
       ),
@@ -34,6 +37,15 @@ class DicePage extends StatefulWidget {
 class _DicePageState extends State<DicePage> {
   int leftDiceNumber = 5;
   int rightDiceNumber = 5;
+
+  void toggleButton() {
+    setState(() {
+      //setstate update all the state where it used
+      leftDiceNumber = Random().nextInt(6) + 1;
+      rightDiceNumber = Random().nextInt(6) + 1;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -42,10 +54,7 @@ class _DicePageState extends State<DicePage> {
           Expanded(
             child: TextButton(
               onPressed: () {
-                setState(() {
-                  leftDiceNumber = Random().nextInt(6) + 1;
-                });
-                print("left button clicked$leftDiceNumber.");
+                toggleButton();
               },
               child: Image.asset("images/dice$leftDiceNumber.png"),
             ),
@@ -53,10 +62,7 @@ class _DicePageState extends State<DicePage> {
           Expanded(
             child: TextButton(
               onPressed: () {
-                setState(() {
-                  rightDiceNumber = Random().nextInt(6) + 1;
-                });
-                print("Right button clicked$rightDiceNumber.");
+                toggleButton();
               },
               child: Image.asset("images/dice$rightDiceNumber.png"),
             ),
