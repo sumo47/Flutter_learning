@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'question.dart';
 import 'quizz_brain.dart';
 
 QuizzBrain quizzBrain = QuizzBrain();
@@ -54,7 +53,7 @@ class _QuizPageState extends State<QuizPage> {
   //   Question('A slug\'s blood is green.', true)
   // ];
 
-  int questionNumber = 0;
+  // int questionNumber = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -68,7 +67,7 @@ class _QuizPageState extends State<QuizPage> {
             padding: EdgeInsets.all(10.0),
             child: Center(
               child: Text(
-                quizzBrain.questionBank[questionNumber].questionText,
+                quizzBrain.getQuestionText(),
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 25.0,
@@ -96,8 +95,7 @@ class _QuizPageState extends State<QuizPage> {
               onPressed: () {
                 setState(() {
                   // checking correct answer is true
-                  if (quizzBrain.questionBank[questionNumber].questionAnswer ==
-                      true) {
+                  if (quizzBrain.getQuestionAnswer() == true) {
                     print("Right clicked ✅✅");
 
                     scoreKeeper.add(
@@ -117,7 +115,7 @@ class _QuizPageState extends State<QuizPage> {
                     );
                   }
 
-                  questionNumber += 1;
+                  quizzBrain.nextQuestion();
 
                   // logic for loop questions
                   // if (questionNumber == 12) {
@@ -151,8 +149,7 @@ class _QuizPageState extends State<QuizPage> {
               onPressed: () {
                 // checking correct answer is false
                 setState(() {
-                  if (quizzBrain.questionBank[questionNumber].questionAnswer ==
-                      false) {
+                  if (quizzBrain.getQuestionAnswer() == false) {
                     print("Right clicked ✅✅");
                     scoreKeeper.add(
                       Icon(
@@ -170,7 +167,7 @@ class _QuizPageState extends State<QuizPage> {
                     );
                   }
 
-                  questionNumber += 1;
+                  quizzBrain.nextQuestion();
 
                   // logic for loop questions
                   // if (questionNumber == 12) {
@@ -191,9 +188,3 @@ class _QuizPageState extends State<QuizPage> {
     );
   }
 }
-
-/*
-question1: 'You can lead a cow down stairs but not up stairs.', false,
-question2: 'Approximately one quarter of human bones are in the feet.', true,
-question3: 'A slug\'s blood is green.', true,
-*/
