@@ -42,7 +42,19 @@ class QuizzBrain {
       // print(_questionNumber);
       _questionNumber++;
     }
-    //   print(_questionNumber);
+    print(_questionNumber);
     //   print(_questionBank.length);
+  }
+
+  bool isFinished() {
+    bool isFinished = false;
+    if ((_questionBank.length - 1) == _questionNumber) {
+      isFinished = true;
+    }
+    return isFinished;
+  }
+
+  void resetQuizz() {
+    _questionNumber = 0;
   }
 }

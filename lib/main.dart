@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 import 'quizz_brain.dart';
 
 QuizzBrain quizzBrain = QuizzBrain();
@@ -34,6 +35,62 @@ class QuizPage extends StatefulWidget {
 }
 
 class _QuizPageState extends State<QuizPage> {
+  void checkAnswer(bool userPickedAnswer) {
+    setState(() {
+      if (quizzBrain.isFinished()) {
+        Alert(
+          context: context,
+          title: "Finished!",
+          desc: "You've reached the end of quiz.",
+          buttons: [
+            DialogButton(
+              child: Text(
+                "RESET",
+                style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold),
+              ),
+              onPressed: () => {
+                Navigator.pop(context),
+                setState(() { //? why i had to use again setState
+                  quizzBrain.resetQuizz();
+                }),
+                scoreKeeper.clear(),
+              },
+              color: Colors.blue,
+            )
+          ],
+        ).show();
+      } else {
+        if (quizzBrain.getQuestionAnswer() == userPickedAnswer) {
+          scoreKeeper.add(
+            Icon(
+              Icons.check,
+              color: Colors.green,
+            ),
+          );
+        } else {
+          scoreKeeper.add(
+            Icon(
+              Icons.close,
+              color: Colors.red,
+            ),
+          );
+        }
+        quizzBrain.nextQuestion();
+      }
+
+      // logic for loop questions
+      // if (questionNumber == 12) {
+      //   questionNumber = 0;
+      // } else {
+      //   questionNumber += 1;
+      //   print(questionNumber);
+      // }
+    });
+  }
+
   List<Icon> scoreKeeper = [];
 
   // List<String> questions = [
@@ -93,40 +150,8 @@ class _QuizPageState extends State<QuizPage> {
                 ),
               ),
               onPressed: () {
-                setState(() {
-                  // checking correct answer is true
-                  if (quizzBrain.getQuestionAnswer() == true) {
-                    print("Right clicked ✅✅");
-
-                    scoreKeeper.add(
-                      Icon(
-                        Icons.check,
-                        color: Colors.green,
-                      ),
-                    );
-                  } else {
-                    print("Wrong clicked ❌❌");
-
-                    scoreKeeper.add(
-                      Icon(
-                        Icons.close,
-                        color: Colors.red,
-                      ),
-                    );
-                  }
-
-                  quizzBrain.nextQuestion();
-
-                  // logic for loop questions
-                  // if (questionNumber == 12) {
-                  //   print("yes it's 2");
-                  //   questionNumber = 0;
-                  // } else {
-                  //   questionNumber += 1;
-                  //   print(questionNumber);
-                  // }
-                });
                 //The user picked true.
+                checkAnswer(true);
               },
             ),
           ),
@@ -148,35 +173,7 @@ class _QuizPageState extends State<QuizPage> {
               ),
               onPressed: () {
                 // checking correct answer is false
-                setState(() {
-                  if (quizzBrain.getQuestionAnswer() == false) {
-                    print("Right clicked ✅✅");
-                    scoreKeeper.add(
-                      Icon(
-                        Icons.check,
-                        color: Colors.green,
-                      ),
-                    );
-                  } else {
-                    print("Wrong clicked ❌❌");
-                    scoreKeeper.add(
-                      Icon(
-                        Icons.close,
-                        color: Colors.red,
-                      ),
-                    );
-                  }
-
-                  quizzBrain.nextQuestion();
-
-                  // logic for loop questions
-                  // if (questionNumber == 12) {
-                  //   questionNumber = 0;
-                  // } else {
-                  //   questionNumber += 1;
-                  //   print(questionNumber);
-                  // }
-                });
+                checkAnswer(false);
               },
             ),
           ),
